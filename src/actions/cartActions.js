@@ -9,7 +9,7 @@ import {
 
 
 export const addToCart = (id, qty, maxQty) => async (dispatch, getState) => {
-    const { data } = await axios.get(`/api/products/${id}`)
+    const { data } = await axios.get(`https://prodjfrance.pythonanywhere.com/api/products/${id}`)
   
     const existingItem = getState().cart.cartItems.find(item => item.product === id)
   
