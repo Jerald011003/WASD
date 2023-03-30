@@ -75,7 +75,7 @@ function OrderScreen({ match, history }) {
     }
 
     const download = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/orders/${match.params.id}/download/`);
+        const response = await fetch(`https://prodjfrance.pythonanywhere.com/api/orders/${match.params.id}/download/`);
         const url = window.URL.createObjectURL(await response.blob());
         const link = document.createElement('a');
         const filename = getFilenameFromResponse(response);
@@ -105,7 +105,7 @@ const confirmDownload = confirm(`Download "${filename}" (${filesizeMB} MB)\n\nPr
 
       const sendConfirmationEmail = async (orderId, emailAddress) => {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/api/orders/${orderId}/send-confirmation-email/`, {
+          const response = await fetch(`https://prodjfrance.pythonanywhere.com/api/orders/${orderId}/send-confirmation-email/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
