@@ -18,7 +18,6 @@ function HomeScreen({ history }) {
 
     useEffect(() => {
         dispatch(listProducts(keyword))
-
     }, [dispatch, keyword])
 
     return (
@@ -31,14 +30,18 @@ function HomeScreen({ history }) {
                 : error ? <Message variant='danger'>{error}</Message>
                     :
                     <div>
-
-                      
                         <Row>
-                            {products.map(product => (
-                                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                                    <Product product={product} />
+                            {products && products.length > 0 ? (
+                                products.map(product => (
+                                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                        <Product product={product} />
+                                    </Col>
+                                ))
+                            ) : (
+                                <Col>
+                                    <Message variant='info'>No products found.</Message>
                                 </Col>
-                            ))}
+                            )}
                         </Row>
                         <Paginate page={page} pages={pages} keyword={keyword} />
                     </div>
