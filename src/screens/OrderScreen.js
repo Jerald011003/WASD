@@ -103,8 +103,8 @@ function OrderScreen({ match, history }) {
       
       // email feature
       const download = () => {
-        history.push(`/${order.download}`)
-    }
+        window.location.href = order.download;
+      };
       
 
       const sendConfirmationEmail = async (orderId, emailAddress) => {
