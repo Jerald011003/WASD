@@ -74,34 +74,38 @@ function OrderScreen({ match, history }) {
         dispatch(deliverOrder(order))
     }
 
-    const download = async () => {
-        const response = await fetch(`https://prodjfrance.pythonanywhere.com/api/orders/${match.params.id}/download/`);
-        const url = window.URL.createObjectURL(await response.blob());
-        const link = document.createElement('a');
-        const filename = getFilenameFromResponse(response);
-        const filesizeBytes = response.headers.get('Content-Length');
-        const filesizeMB = filesizeBytes ? (filesizeBytes / 1048576).toFixed(2) : 'Unknown';
-const confirmDownload = confirm(`Download "${filename}" (${filesizeMB} MB)\n\nPress "OK" to proceed with the download, or "Cancel" to abort.`);
-        if (confirmDownload) {
-          link.href = url;
-          link.setAttribute('download', filename);
-          document.body.appendChild(link);
-          link.click();
-        }
-      };
+//     const download = async () => {
+//         const response = await fetch(`https://prodjfrance.pythonanywhere.com/api/orders/${match.params.id}/download/`);
+//         const url = window.URL.createObjectURL(await response.blob());
+//         const link = document.createElement('a');
+//         const filename = getFilenameFromResponse(response);
+//         const filesizeBytes = response.headers.get('Content-Length');
+//         const filesizeMB = filesizeBytes ? (filesizeBytes / 1048576).toFixed(2) : 'Unknown';
+// const confirmDownload = confirm(`Download "${filename}" (${filesizeMB} MB)\n\nPress "OK" to proceed with the download, or "Cancel" to abort.`);
+//         if (confirmDownload) {
+//           link.href = url;
+//           link.setAttribute('download', filename);
+//           document.body.appendChild(link);
+//           link.click();
+//         }
+//       };
       
       
       
-      const getFilenameFromResponse = (response) => {
-        const contentDisposition = response.headers.get('Content-Disposition');
-        const matches = /filename="(.*)"/.exec(contentDisposition);
-        let filename = matches ? matches[1] : 'Application.exe';
-        filename = filename.replace(/[^\w.-]/g, '_'); // replace any invalid characters with underscores
-        return filename;
-      };
+//       const getFilenameFromResponse = (response) => {
+//         const contentDisposition = response.headers.get('Content-Disposition');
+//         const matches = /filename="(.*)"/.exec(contentDisposition);
+//         let filename = matches ? matches[1] : 'Application.exe';
+//         filename = filename.replace(/[^\w.-]/g, '_'); // replace any invalid characters with underscores
+//         return filename;
+//       };
       
       
       // email feature
+      const download = () => {
+        history.push(`/${order.download}`)
+    }
+      
 
       const sendConfirmationEmail = async (orderId, emailAddress) => {
         try {
