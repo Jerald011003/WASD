@@ -32,7 +32,7 @@ function Product({ product }) {
         </Card.Text>
 
         <Card.Text as="h5" className="mb-3">
-  {product.countInStock === 0 ? "Out of Stock" : `Available`}
+  {product.countInStock === 0 ? "Upcoming" : `Available`}
 </Card.Text>
 
 

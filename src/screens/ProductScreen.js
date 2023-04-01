@@ -120,7 +120,7 @@ function ProductScreen({ match, history }) {
                   <Row>
                     <Col>Status:</Col>
                     <Col>
-                      {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                      {product.countInStock > 0 ? 'Available' : 'Upcoming'}
                     </Col>
                     
                    
@@ -154,7 +154,7 @@ function ProductScreen({ match, history }) {
     </Button>
   ) : (
     <Button type="button" className="btn-block" disabled>
-      Out of Stock
+      Upcoming
     </Button>
   )}
 
