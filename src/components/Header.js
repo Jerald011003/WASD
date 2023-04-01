@@ -14,6 +14,7 @@ import { FaFileInvoice } from 'react-icons/fa';
 import { listProductDetails, createProductReview } from '../actions/productActions';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 import { FaComments } from 'react-icons/fa';
+import { Helmet } from "react-helmet";
 
 function Header({ match, history}) {
   
@@ -30,6 +31,10 @@ function Header({ match, history}) {
   
   return (
     <header>
+       <Helmet>
+        <title>W A S D</title>
+        <link rel="icon" type="image/png" href="https://imgur.com/JxvCYdN.png" sizes="16x16" />
+      </Helmet>
       <Navbar bg="dark" variant="dark" expand="lg" style={{ height: '125px' }}>
         <Container>
           <LinkContainer to="/">
