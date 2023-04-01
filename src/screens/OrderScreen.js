@@ -26,7 +26,6 @@ function OrderScreen({ match, history }) {
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
-    const { confirm } = window;
 
 
     if (!loading && !error) {
@@ -74,59 +73,65 @@ function OrderScreen({ match, history }) {
         dispatch(deliverOrder(order))
     }
 
-//     const download = async () => {
-//         const response = await fetch(`https://prodjfrance.pythonanywhere.com/api/orders/${match.params.id}/download/`);
-//         const url = window.URL.createObjectURL(await response.blob());
-//         const link = document.createElement('a');
-//         const filename = getFilenameFromResponse(response);
-//         const filesizeBytes = response.headers.get('Content-Length');
-//         const filesizeMB = filesizeBytes ? (filesizeBytes / 1048576).toFixed(2) : 'Unknown';
-// const confirmDownload = confirm(`Download "${filename}" (${filesizeMB} MB)\n\nPress "OK" to proceed with the download, or "Cancel" to abort.`);
-//         if (confirmDownload) {
-//           link.href = url;
-//           link.setAttribute('download', filename);
-//           document.body.appendChild(link);
-//           link.click();
-//         }
-//       };
+    // const download = async () => {
+    //     try {
+    //       const response = await fetch(`/api/orders/${match.params.id}/download/${props.filePath}/`);
+    //       if (!response.ok) {
+    //         throw new Error(`Failed to download file (${response.status} ${response.statusText})`);
+    //       }
+    //       const url = window.URL.createObjectURL(await response.blob());
+    //       const link = document.createElement('a');
+    //       const filename = getFilenameFromResponse(response);
+    //       const filesizeBytes = response.headers.get('Content-Length');
+    //       const filesizeMB = filesizeBytes ? (filesizeBytes / 1048576).toFixed(2) : 'Unknown';
+    //       const confirmDownload = confirm(`Download "${filename}" (${filesizeMB} MB)\n\nPress "OK" to proceed with the download, or "Cancel" to abort.`);
+    //       if (confirmDownload) {
+    //         link.href = url;
+    //         link.setAttribute('download', filename);
+    //         document.body.appendChild(link);
+    //         link.click();
+    //       }
+    //     } catch (err) {
+    //       console.error(err);
+    //       alert('Failed to download file');
+    //     }
+    //   };
       
+    //   const getFilenameFromResponse = (response) => {
+    //     const contentDisposition = response.headers.get('Content-Disposition');
+    //     const matches = /filename="(.*)"/.exec(contentDisposition);
+    //     let filename = matches ? matches[1] : 'Application.exe';
+    //     filename = filename.replace(/[^\w.-]/g, '_'); // replace any invalid characters with underscores
+    //     return filename;
+    //   };
       
-      
-//       const getFilenameFromResponse = (response) => {
-//         const contentDisposition = response.headers.get('Content-Disposition');
-//         const matches = /filename="(.*)"/.exec(contentDisposition);
-//         let filename = matches ? matches[1] : 'Application.exe';
-//         filename = filename.replace(/[^\w.-]/g, '_'); // replace any invalid characters with underscores
-//         return filename;
-//       };
-      
-      
-      // email feature
-      const download = () => {
+    const download = () => {
         window.location.href = order.download;
       };
       
-
-      const sendConfirmationEmail = async (orderId, emailAddress) => {
-        try {
-          const response = await fetch(`https://prodjfrance.pythonanywhere.com/api/orders/${orderId}/send-confirmation-email/`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              emailAddress: emailAddress
-            })
-          });
-          const data = await response.json();
-          console.log(data); // log the response data for debugging purposes
-        } catch (error) {
-          console.error(error); // log any errors that occur during the fetch request
-        }
-      };
       
-      // add this function call inside your existing code, after the order has been paid
-      sendConfirmationEmail(match.params.id);
+      // email feature
+
+    //   const sendConfirmationEmail = async (orderId, emailAddress) => {
+    //     try {
+    //       const response = await fetch(`http://127.0.0.1:8000/api/orders/${orderId}/send-confirmation-email/`, {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //           emailAddress: emailAddress
+    //         })
+    //       });
+    //       const data = await response.json();
+    //       console.log(data); // log the response data for debugging purposes
+    //     } catch (error) {
+    //       console.error(error); // log any errors that occur during the fetch request
+    //     }
+    //   };
+      
+    //   // add this function call inside your existing code, after the order has been paid
+    //   sendConfirmationEmail(match.params.id);
       
 
     return loading ? (
@@ -144,7 +149,7 @@ function OrderScreen({ match, history }) {
                                     <p><strong>Name: </strong> {order.user.name}</p>
                                     <p><strong>Email: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
                                     <p>
-                                        <strong>Details: </strong>
+                                        <strong>Contant Info: </strong>
                                         {order.shippingAddress.address},  {order.shippingAddress.city}
                                         {'  '}
                                         {order.shippingAddress.postalCode},
@@ -198,9 +203,9 @@ function OrderScreen({ match, history }) {
                                                                 <Link to={`/product/${item.product}`}>{item.name}</Link>
                                                             </Col>
 
-                                                            <Col md={4}>
+                                                            {/* <Col md={4}>
                                                                 {item.qty} X ${item.price} = ${(item.qty * item.price).toFixed(2)}
-                                                            </Col>
+                                                            </Col> */}
                                                         </Row>
                                                     </ListGroup.Item>
                                                 ))}
@@ -263,7 +268,7 @@ function OrderScreen({ match, history }) {
                                         </ListGroup.Item>
                                     )}
                                 </ListGroup>
-                                {loadingDeliver && <Loader />}
+                                {/* {loadingDeliver && <Loader />}
                                 {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                                     <ListGroup.Item>
                                         <Button
@@ -274,13 +279,14 @@ function OrderScreen({ match, history }) {
                                             Mark As Delivered
                                         </Button>
                                     </ListGroup.Item>
-                                )}
+                                )} */}
 
 
                
 {order.isPaid && order.paymentMethod === 'PayPal' && (
   <Button onClick={download}>Download</Button>
 )}
+
 
 
 

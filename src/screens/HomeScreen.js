@@ -7,47 +7,42 @@ import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import { listProducts } from '../actions/productActions'
-import Friend from '../components/FriendList'
-
+import '../styles/Header.css'
 function HomeScreen({ history }) {
-    const dispatch = useDispatch()
-    const productList = useSelector(state => state.productList)
-    const { error, loading, products, page, pages } = productList
+  const dispatch = useDispatch()
+  const productList = useSelector(state => state.productList)
+  const { error, loading, products, page, pages } = productList
 
-    let keyword = history.location.search
+  let keyword = history.location.search
 
-    useEffect(() => {
-        dispatch(listProducts(keyword))
-    }, [dispatch, keyword])
+  useEffect(() => {
+    dispatch(listProducts(keyword))
+  }, [dispatch, keyword])
 
-    return (
-        <div>
-              {/* <Friend /> */}
-            {/* {!keyword && <ProductCarousel />} */}
+  return (
+    <div className="home-screen-container">
+      {/* <Friend /> */}
+      {!keyword && <ProductCarousel />}
 
-            <h1>Latest Games</h1>
-            {loading ? <Loader />
-                : error ? <Message variant='danger'>{error}</Message>
-                    :
-                    <div>
-                        <Row>
-                            {products && products.length > 0 ? (
-                                products.map(product => (
-                                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                                        <Product product={product} />
-                                    </Col>
-                                ))
-                            ) : (
-                                <Col>
-                                    <Message variant='info'>No products found.</Message>
-                                </Col>
-                            )}
-                        </Row>
-                        <Paginate page={page} pages={pages} keyword={keyword} />
-                    </div>
-            }
+      <h1 className="home-screen-title">Latest Games</h1>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <div className="home-screen-product-list-container">
+          <Row className="home-screen-product-list">
+            {products.map(product => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3} className="home-screen-product-col">
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+          <Paginate page={page} pages={pages} keyword={keyword} className="home-screen-pagination" />
         </div>
-    )
+      )}
+    </div>
+  )
 }
 
 export default HomeScreen

@@ -22,8 +22,11 @@ function ProductEditScreen({ match, history }) {
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
-
+    const [download, setDownload] = useState('')
+    const [watch, setWatch] = useState('')
+    const [preorderdate, setPreorder] = useState('')
     const dispatch = useDispatch()
+    const [uploadingDownload, setUploadingDownload] = useState(false)
 
     const productDetails = useSelector(state => state.productDetails)
     const { error, loading, product } = productDetails
@@ -48,6 +51,9 @@ function ProductEditScreen({ match, history }) {
                 setCategory(product.category)
                 setCountInStock(product.countInStock)
                 setDescription(product.description)
+                setDownload(product.download)
+                setWatch(product.watch)
+                setPreorder(product.preorderdate)
 
             }
         }
@@ -66,7 +72,10 @@ function ProductEditScreen({ match, history }) {
             brand,
             category,
             countInStock,
-            description
+            description,
+            download,
+            watch,
+            preorderdate
         }))
     }
 
@@ -97,6 +106,33 @@ function ProductEditScreen({ match, history }) {
         }
     }
 
+    const uploadDownloadHandler = async (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData()
+
+        formData.append('download', file)
+        formData.append('product_id', productId)
+
+        setUploadingDownload(true)
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const { data } = await axios.post('/api/products/upload/', formData, config)
+
+
+            setDownload(data)
+            setUploadingDownload(false)
+
+        } catch (error) {
+            setUploadingDownload(false)
+
+        }
+    }
     return (
         <div>
             <Link to='/admin/productlist'>
@@ -208,6 +244,51 @@ function ProductEditScreen({ match, history }) {
                                 >
                                 </Form.Control>
                             </Form.Group>
+
+                            
+                            <Form.Group controlId='download'>
+                                <Form.Label>Download</Form.Label>
+                                <Form.Control
+
+                                    type='text'
+                                    placeholder='Upload Download'
+                                    value={download}
+                                    onChange={(e) => setDownload(e.target.value)}
+                                >
+                                </Form.Control>
+
+                                <Form.File
+                                    id='fileupload'
+                                    label='Choose File'
+                                    custom
+                                    onChange={uploadDownloadHandler}
+                                >
+
+                                </Form.File>
+                                {uploadingDownload && <Loader />}
+                            </Form.Group>
+
+                            <Form.Group controlId='watch'>
+                                <Form.Label>Watch</Form.Label>
+                                <Form.Control
+
+                                    type='text'
+                                    placeholder='Enter URL'
+                                    value={watch}
+                                    onChange={(e) => setWatch(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group controlId='preorderdate'>
+    <Form.Label>Pre-order Date</Form.Label>
+    <Form.Control
+        type='date'
+        placeholder='Enter date'
+        value={preorderdate}
+        onChange={(e) => setPreorder(e.target.value)}
+    />
+</Form.Group>
 
 
                             <Button type='submit' variant='primary'>

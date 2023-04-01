@@ -7,57 +7,30 @@ import {
     CART_SAVE_PAYMENT_METHOD,
 } from '../constants/cartConstants'
 
-
 export const addToCart = (id, qty, maxQty) => async (dispatch, getState) => {
-    const { data } = await axios.get(`https://prodjfrance.pythonanywhere.com/api/products/${id}`)
-  
-    const existingItem = getState().cart.cartItems.find(item => item.product === id)
-  
-    if (existingItem) {
-      const newQty = existingItem.qty + qty
-      if (newQty > maxQty) {
-        qty = maxQty - existingItem.qty
-        dispatch({
-          type: CART_ADD_ITEM,
-          payload: {
-            product: data._id,
-            name: data.name,
-            image: data.image,
-            price: data.price,
-            countInStock: data.countInStock,
-            qty: qty
-          }
-        })
-      } else {
-        dispatch({
-          type: CART_ADD_ITEM,
-          payload: {
-            product: data._id,
-            name: data.name,
-            image: data.image,
-            price: data.price,
-            countInStock: data.countInStock,
-            qty: qty
-          }
-        })
-      }
-    } else {
-      dispatch({
-        type: CART_ADD_ITEM,
-        payload: {
-          product: data._id,
-          name: data.name,
-          image: data.image,
-          price: data.price,
-          countInStock: data.countInStock,
-          qty: qty
-        }
-      })
+  const { data } = await axios.get(`/api/products/${id}`)
+
+  dispatch({
+    type: CART_REMOVE_ITEM,
+    payload: id
+  })
+
+  dispatch({
+    type: CART_ADD_ITEM,
+    payload: {
+      product: data._id,
+      name: data.name,
+      image: data.image,
+      price: data.price,
+      countInStock: data.countInStock,
+      qty: qty
     }
-  
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
-  }
-  
+  })
+
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
+
+
 
 
 

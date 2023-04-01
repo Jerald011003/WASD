@@ -13,7 +13,7 @@ export const addFriendSuccess = (friend) => ({
 
 export const fetchFriends = () => {
   return (dispatch) => {
-    axios.get('https://prodjfrance.pythonanywhere.com/api/friends/')
+    axios.get('/api/friends/')
       .then(response => {
         dispatch(fetchFriendsSuccess(response.data));
       });
@@ -22,7 +22,7 @@ export const fetchFriends = () => {
 
 export const addFriend = (friendId) => {
   return (dispatch) => {
-    axios.post('https://prodjfrance.pythonanywhere.com/api/friends/add/', { friend_id: friendId })
+    axios.post('/api/friends/add/', { friend_id: friendId })
       .then(response => {
         dispatch(addFriendSuccess(response.data));
       });

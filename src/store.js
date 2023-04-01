@@ -12,6 +12,9 @@ import {
 } from './reducers/productReducers'
 
 import { cartReducer } from './reducers/cartReducers'
+import { wishReducer } from './reducers/wishReducers'
+import { preorderReducer } from './reducers/preorderReducer'
+import { chatboxReducer} from './reducers/chatboxReducer'
 
 import {
     userLoginReducer,
@@ -42,6 +45,10 @@ const reducer = combineReducers({
     productTopRated: productTopRatedReducer,
 
     cart: cartReducer,
+    wishlist: wishReducer,
+    chatbox: chatboxReducer,
+    // friendsList: friendsListReducer,
+    preorder: preorderReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,

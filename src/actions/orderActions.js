@@ -49,7 +49,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `https://prodjfrance.pythonanywhere.com/api/orders/add/`,
+            `/api/orders/add/`,
             order,
             config
         )
@@ -96,7 +96,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `https://prodjfrance.pythonanywhere.com/api/orders/${id}/`,
+            `/api/orders/${id}/`,
             config
         )
 
@@ -136,7 +136,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `https://prodjfrance.pythonanywhere.com/api/orders/${id}/pay/`,
+            `/api/orders/${id}/pay/`,
             paymentResult,
             config
         )
@@ -176,7 +176,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `https://prodjfrance.pythonanywhere.com/api/orders/${order._id}/deliver/`,
+            `/api/orders/${order._id}/deliver/`,
             {},
             config
         )
@@ -217,7 +217,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `https://prodjfrance.pythonanywhere.com/api/orders/myorders/`,
+            `/api/orders/myorders/`,
             config
         )
 
@@ -256,7 +256,7 @@ export const listOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `https://prodjfrance.pythonanywhere.com/api/orders/`,
+            `/api/orders/`,
             config
         )
 

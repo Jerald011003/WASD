@@ -55,7 +55,7 @@ function CartScreen({ match, location, history }) {
                                         
 
                                         <Col md={3}>
-                                            <Form.Control
+                                            {/* <Form.Control
                                                 as="select"
                                                 value={item.qty}
                                                 onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
@@ -69,7 +69,7 @@ function CartScreen({ match, location, history }) {
                                                     ))
                                                 }
 
-                                            </Form.Control>
+                                            </Form.Control> */}
                                         </Col>
 
                                         <Col md={1}>

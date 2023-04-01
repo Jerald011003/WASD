@@ -18,7 +18,11 @@ import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import ChatFriend from './screens/ChatFriend'
+import Wishlist from './screens/Wishlist'
+import WishHandler from './screens/WishHandler'
+import ChatBox from './screens/ChatBox'
 
+import PreorderScreen from './screens/PreorderScreen'
 function App() {
   return (
     <Router>
@@ -45,7 +49,14 @@ function App() {
           <Route path='/admin/orderlist' component={OrderListScreen} />
 
           <Route path='/chatfriend' component={ChatFriend} />
-        
+
+          <Route path='/wishlist/:id?' component={Wishlist} />
+
+          <Route path='/wishhandler/:id' component={WishHandler} />
+
+          <Route path='/preorder/:id?' component={PreorderScreen} />
+         
+          <Route path='/chatbox' component={ChatBox} />
         </Container>
       </main>
       <Footer />
