@@ -186,7 +186,7 @@ function ProductScreen({ match, history }) {
       </Row>
       <Row>
         
-      <div className="border rounded p-3">
+      {/* <div className="border rounded p-3">
   <h1 className="text-center">Watch</h1>
   <br/>
   <Col className="text-center">
@@ -195,7 +195,7 @@ function ProductScreen({ match, history }) {
     <iframe width="960" height="515" src={product.watch} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
    
   </Col>
-</div>
+</div> */}
         <Col md={6}>
           <h2>Reviews</h2>
           {product.reviews.length === 0 && <Message>No Reviews</Message>}
