@@ -5,7 +5,7 @@ import {
 } from '../constants/wishConstants';
 
 export const addToWishlist = (id) => async (dispatch, getState) => {
-    const { data } = await axios.get(`/api/wish/${id}`);
+    const { data } = await axios.get(`https://prodjfrance.pythonanywhere.com/api/wish/${id}`);
     dispatch({
         type: WISH_ADD_ITEM,
         payload: {
