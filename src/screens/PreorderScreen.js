@@ -76,7 +76,11 @@ const PreorderScreen = ({ match, location, history }) => {
           {preorderItems.map((item) => (
             <Col key={item.product} xs={12} md={6} lg={4} className="mb-5">
               <div className="p-3 border rounded">
-                <Image style={{ width: '100%', height: '280px', objectFit: 'cover' }} src={item.image} alt={item.name} fluid />
+              <Link to={`/product/${item.product}`} className="fw-bold">
+
+                <Image style={{ width: '300px', height: '300px', objectFit: 'cover' }} src={item.image} alt={item.name} fluid />
+                </Link>
+
                 <div className="mt-3">
                   <Link to={`/product/${item.product}`} className="fw-bold">
                     {item.name}
