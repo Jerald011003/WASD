@@ -29,36 +29,7 @@ const PreorderScreen = ({ match, location, history }) => {
         dispatch(removeFromPreorder(id));
     };
 
-    // const [qty, setQty] = useState(1);
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [wishlist, setWishlist] = useState([]);
-  
-//   const dispatch = useDispatch();
-
-  const productDetails = useSelector(state => state.productDetails);
-  const { loading, error, product } = productDetails;
-
-  const userLogin = useSelector(state => state.userLogin);
-  const { userInfo } = userLogin;
-
-  const productReviewCreate = useSelector(state => state.productReviewCreate);
-  const {
-    loading: loadingProductReview,
-    error: errorProductReview,
-    success: successProductReview,
-  } = productReviewCreate;
-
-  useEffect(() => {
-    if (successProductReview) {
-      setRating(0);
-      setComment('');
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
-    }
-
-    dispatch(listProductDetails(match.params.id));
-  }, [dispatch, match, successProductReview]);
-
+ 
 
   return (
     <Container>
