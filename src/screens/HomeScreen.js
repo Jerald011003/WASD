@@ -7,6 +7,8 @@ import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import { listProducts } from '../actions/productActions'
+import { Link } from 'react-router-dom';
+
 import '../styles/Header.css'
 function HomeScreen({ history }) {
   const dispatch = useDispatch()
@@ -22,9 +24,9 @@ function HomeScreen({ history }) {
   return (
     <div className="home-screen-container">
       {/* <Friend /> */}
-      {!keyword && <ProductCarousel />}
+   
 
-      <h1 className="home-screen-title">Latest Games</h1>
+      {/* <h1 className="home-screen-title">Latest Games</h1> */}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -33,14 +35,19 @@ function HomeScreen({ history }) {
         <div className="home-screen-product-list-container">
           <Row className="home-screen-product-list">
             {products.map(product => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3} className="home-screen-product-col">
+              
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3} className="home-screen-product-col" >
                 <Product product={product} />
               </Col>
+          
             ))}
           </Row>
           <Paginate page={page} pages={pages} keyword={keyword} className="home-screen-pagination" />
+         
         </div>
       )}
+
+{!keyword && <ProductCarousel />}
     </div>
   )
 }

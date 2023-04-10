@@ -140,7 +140,7 @@ function ProductEditScreen({ match, history }) {
             </Link>
 
             <FormContainer>
-                <h1>Edit Product</h1>
+                <h1>Edit Game</h1>
                 {loadingUpdate && <Loader />}
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
@@ -197,7 +197,7 @@ function ProductEditScreen({ match, history }) {
                             </Form.Group>
 
 
-                            <Form.Group controlId='brand'>
+                            {/* <Form.Group controlId='brand'>
                                 <Form.Label>Brand</Form.Label>
                                 <Form.Control
 
@@ -207,7 +207,7 @@ function ProductEditScreen({ match, history }) {
                                     onChange={(e) => setBrand(e.target.value)}
                                 >
                                 </Form.Control>
-                            </Form.Group>
+                            </Form.Group> */}
 
                             <Form.Group controlId='countinstock'>
                                 <Form.Label>Stock</Form.Label>
@@ -221,7 +221,7 @@ function ProductEditScreen({ match, history }) {
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='category'>
+                            {/* <Form.Group controlId='category'>
                                 <Form.Label>Category</Form.Label>
                                 <Form.Control
 
@@ -231,7 +231,7 @@ function ProductEditScreen({ match, history }) {
                                     onChange={(e) => setCategory(e.target.value)}
                                 >
                                 </Form.Control>
-                            </Form.Group>
+                            </Form.Group> */}
 
                             <Form.Group controlId='description'>
                                 <Form.Label>Description</Form.Label>

@@ -74,14 +74,17 @@ function ProductScreen({ match, history }) {
         <Message variant="danger">{error}</Message>
       ) : (
         <div>
-          <Row>
-            <Col md={6}>
+          <Row className='justify-content-center'>
+            <Col md={10} className='text-center'>
+              
               <Image src={product.image} alt={product.name} fluid />
+        
             </Col>
 
           
 
-            <Col md={3}>
+            <Col md={5}>
+              <br/>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>{product.name}</h3>
@@ -103,7 +106,8 @@ function ProductScreen({ match, history }) {
               </ListGroup>
             </Col>
 
-            <Col md={3}>
+            <Col md={5}>
+            <br/>
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
@@ -125,6 +129,7 @@ function ProductScreen({ match, history }) {
                     
                    
                   </Row>
+                  <br/>
                 </ListGroup.Item>
 
                 {/* {product.countInStock > 0 && (
@@ -147,6 +152,7 @@ function ProductScreen({ match, history }) {
                     </Row>
                   </ListGroup.Item>
                 )} */}
+                
 <ListGroup.Item className="d-flex justify-content-center">
   {product.countInStock ? (
     <Button type="button" className="btn-block" onClick={addToCartHandler}>
@@ -176,28 +182,30 @@ function ProductScreen({ match, history }) {
   >
     Pre-order
   </Button>
+  
 </ListGroup.Item>
 
 
 
               </ListGroup>
             </Card>
+            
         </Col>
       </Row>
-      <Row>
+      <Row className='justify-content-center'>
         
-      {/* <div className="border rounded p-3">
+      <div className="border rounded p-3">
   <h1 className="text-center">Watch</h1>
-  <br/>
+ 
   <Col className="text-center">
   
    
-    <iframe width="960" height="515" src={product.watch} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+    <iframe width="780" height="515" src={product.watch} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
    
   </Col>
-</div> */}
-        <Col md={6}>
-          <h2>Reviews</h2>
+</div>
+        <Col md={10} >
+          <h4 className='text-center'>People who reviewed this game.</h4>
           {product.reviews.length === 0 && <Message>No Reviews</Message>}
           <ListGroup variant="flush">
             {product.reviews.map((review) => (
@@ -209,7 +217,7 @@ function ProductScreen({ match, history }) {
               </ListGroup.Item>
             ))}
             <ListGroup.Item>
-              <h2>Write a Customer Review</h2>
+      
               {successProductReview && (
                 <Message variant="success">
                   Review submitted successfully

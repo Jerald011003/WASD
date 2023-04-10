@@ -30,7 +30,7 @@ function OrderListScreen({ history }) {
 
     return (
         <div>
-            <h1>Orders</h1>
+            <h1>Purchase History</h1>
             {loading
                 ? (<Loader />)
                 : error
@@ -39,12 +39,12 @@ function OrderListScreen({ history }) {
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    {/* <th>ID</th> */}
                                     <th>USER</th>
                                     <th>DATE</th>
                                     <th>Total</th>
                                     <th>PAID</th>
-                                    <th>DELIVERED</th>
+                                    {/* <th>DELIVERED</th> */}
                                     <th></th>
                                 </tr>
                             </thead>
@@ -52,7 +52,7 @@ function OrderListScreen({ history }) {
                             <tbody>
                                 {orders.map(order => (
                                     <tr key={order._id}>
-                                        <td>{order._id}</td>
+                                        {/* <td>{order._id}</td> */}
                                         <td>{order.user && order.user.name}</td>
                                         <td>{order.createdAt.substring(0, 10)}</td>
                                         <td>${order.totalPrice}</td>
@@ -60,16 +60,16 @@ function OrderListScreen({ history }) {
                                         <td>{order.isPaid ? (
                                             order.paidAt.substring(0, 10)
                                         ) : (
-                                                <i className='fas fa-check' style={{ color: 'red' }}></i>
+                                                <i className='fas fa-times' style={{ color: 'red' }}></i>
                                             )}
                                         </td>
 
-                                        <td>{order.isDelivered ? (
+                                        {/* <td>{order.isDelivered ? (
                                             order.deliveredAt.substring(0, 10)
                                         ) : (
                                                 <i className='fas fa-check' style={{ color: 'red' }}></i>
                                             )}
-                                        </td>
+                                        </td> */}
 
                                         <td>
                                             <LinkContainer to={`/order/${order._id}`}>

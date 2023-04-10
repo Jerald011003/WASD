@@ -64,9 +64,9 @@ function ProfileScreen({ history }) {
 
     }
     return (
-        <Row>
-            <Col md={3}>
-                <h2>User Profile</h2>
+        <Row className='justify-content-center'>
+            <Col md={10} className='justify-content-center'>
+                <h2>Your Profile</h2>
 
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
@@ -128,21 +128,21 @@ function ProfileScreen({ history }) {
                 </Form>
             </Col>
 
-            <Col md={9}>
-                <h2>My Orders</h2>
+            <Col >
+                <h2 className='text-center'>Purchased Games</h2>
                 {loadingOrders ? (
                     <Loader />
                 ) : errorOrders ? (
                     <Message variant='danger'>{errorOrders}</Message>
                 ) : (
-                            <Table striped responsive className='table-sm'>
+                            <Table striped responsive className='table-sm text-center'>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Date</th>
-                                        <th>Total</th>
+                                        {/* <th>ID</th> */}
+                                        <th>Date of Purchase</th>
+                                        <th>Cost of Game</th>
                                         <th>Paid</th>
-                                        <th>Delivered</th>
+                                        <th>See Details</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -150,10 +150,10 @@ function ProfileScreen({ history }) {
                                 <tbody>
                                     {orders.map(order => (
                                         <tr key={order._id}>
-                                            <td>{order._id}</td>
+                                            {/* <td>{order._id}</td> */}
                                             <td>{order.createdAt.substring(0, 10)}</td>
                                             <td>${order.totalPrice}</td>
-                                            <td>{order.isPaid ? order.paidAt.substring(0, 10) : (
+                                            <td>{order.isPaid ? <i className='fas fa-check' style={{ color: 'green' }}></i>: (
                                                 <i className='fas fa-times' style={{ color: 'red' }}></i>
                                             )}</td>
                                             <td>

@@ -50,13 +50,36 @@ function PlaceOrderScreen({ history }) {
         <div>
             <CheckoutSteps step1 step2 step3 step4 />
             <Row>
-                <Col md={8}>
-                    <ListGroup variant='flush'>
+                <Col md={12}>
+                    <ListGroup variant='flush' className='text-center'>
+                    <ListGroup.Item>
+                           
+                            {cart.cartItems.length === 0 ? <Message variant='info'>
+                                Your cart is empty
+                            </Message> : (
+                                    <ListGroup>
+                                        <ListGroup.Item>
+                                            <Row className="justify-content-center">
+                                            <Col  className="d-flex justify-content-center">
+    <Image src={cart.cartItems[0].image} alt={cart.cartItems[0].name} fluid rounded />
+</Col>
+
+
+                                               
+
+                                               
+</Row>
+</ListGroup.Item>
+</ListGroup>
+)}
+</ListGroup.Item>
+                        
                         <ListGroup.Item>
-                            <h2>Contact</h2>
+                            <h2>Details</h2>
+                         
 
                             <p>
-                                <strong>Details: </strong>
+                           
                                 {cart.shippingAddress.address},  {cart.shippingAddress.city}
                                 {'  '}
                                 {cart.shippingAddress.postalCode},
@@ -68,48 +91,25 @@ function PlaceOrderScreen({ history }) {
                         <ListGroup.Item>
                             <h2>Payment Method</h2>
                             <p>
-                                <strong>Method: </strong>
+                             
                                 {cart.paymentMethod}
                             </p>
                         </ListGroup.Item>
 
-                        <ListGroup.Item>
-                            <h2>Order Items</h2>
-                            {cart.cartItems.length === 0 ? <Message variant='info'>
-                                Your cart is empty
-                            </Message> : (
-                                    <ListGroup variant='flush'>
-                                        <ListGroup.Item>
-                                            <Row>
-                                                <Col md={1}>
-                                                    <Image src={cart.cartItems[0].image} alt={cart.cartItems[0].name} fluid rounded />
-                                                </Col>
-
-                                                <Col>
-                                                    <Link to={`/product/${cart.cartItems[0].product}`}>{cart.cartItems[0].name}</Link>
-                                                </Col>
-
-                                                <Col md={4}>
-                                                    {/* {cart.cartItems[0].qty} X ${cart.cartItems[0].price} = ${(cart.cartItems[0].qty * cart.cartItems[0].price).toFixed(2)} */}
-</Col>
-</Row>
-</ListGroup.Item>
-</ListGroup>
-)}
-</ListGroup.Item>
+                     
 </ListGroup>
 </Col>
 
-<Col md={4}>
+<Col md={12} className='text-center'>
                 <Card>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
-                            <h2>Order Summary</h2>
+                            {/* <h2>Cost</h2> */}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
                             <Row>
-                                <Col>Items:</Col>
+                                <Col>Game Price:</Col>
                                 <Col>${cart.itemsPrice}</Col>
                             </Row>
                         </ListGroup.Item>
@@ -146,7 +146,7 @@ function PlaceOrderScreen({ history }) {
                                 disabled={cart.cartItems.length === 0}
                                 onClick={placeOrder}
                             >
-                                Place Order
+                                Buy Now!
                             </Button>
                         </ListGroup.Item>
                     </ListGroup>

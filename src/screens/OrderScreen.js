@@ -73,66 +73,13 @@ function OrderScreen({ match, history }) {
         dispatch(deliverOrder(order))
     }
 
-    // const download = async () => {
-    //     try {
-    //       const response = await fetch(`/api/orders/${match.params.id}/download/${props.filePath}/`);
-    //       if (!response.ok) {
-    //         throw new Error(`Failed to download file (${response.status} ${response.statusText})`);
-    //       }
-    //       const url = window.URL.createObjectURL(await response.blob());
-    //       const link = document.createElement('a');
-    //       const filename = getFilenameFromResponse(response);
-    //       const filesizeBytes = response.headers.get('Content-Length');
-    //       const filesizeMB = filesizeBytes ? (filesizeBytes / 1048576).toFixed(2) : 'Unknown';
-    //       const confirmDownload = confirm(`Download "${filename}" (${filesizeMB} MB)\n\nPress "OK" to proceed with the download, or "Cancel" to abort.`);
-    //       if (confirmDownload) {
-    //         link.href = url;
-    //         link.setAttribute('download', filename);
-    //         document.body.appendChild(link);
-    //         link.click();
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //       alert('Failed to download file');
-    //     }
-    //   };
-      
-    //   const getFilenameFromResponse = (response) => {
-    //     const contentDisposition = response.headers.get('Content-Disposition');
-    //     const matches = /filename="(.*)"/.exec(contentDisposition);
-    //     let filename = matches ? matches[1] : 'Application.exe';
-    //     filename = filename.replace(/[^\w.-]/g, '_'); // replace any invalid characters with underscores
-    //     return filename;
-    //   };
       
     const download = () => {
         window.location.href = order.download;
       };
       
       
-      // email feature
 
-    //   const sendConfirmationEmail = async (orderId, emailAddress) => {
-    //     try {
-    //       const response = await fetch(`http://127.0.0.1:8000/api/orders/${orderId}/send-confirmation-email/`, {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //           emailAddress: emailAddress
-    //         })
-    //       });
-    //       const data = await response.json();
-    //       console.log(data); // log the response data for debugging purposes
-    //     } catch (error) {
-    //       console.error(error); // log any errors that occur during the fetch request
-    //     }
-    //   };
-      
-    //   // add this function call inside your existing code, after the order has been paid
-    //   sendConfirmationEmail(match.params.id);
-      
 
     return loading ? (
         <Loader />
@@ -140,103 +87,53 @@ function OrderScreen({ match, history }) {
         <Message variant='danger'>{error}</Message>
     ) : (
                 <div>
-                    <h1>Order: {order.Id}</h1>
+                    {/* <h1>Order: {order.Id}</h1> */}
                     <Row>
-                        <Col md={8}>
+                        <Col md={12} >
+                           <Card >
                             <ListGroup variant='flush'>
-                                <ListGroup.Item>
-                                    <h2>Contact</h2>
-                                    <p><strong>Name: </strong> {order.user.name}</p>
-                                    <p><strong>Email: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
-                                    <p>
-                                        <strong>Contant Info: </strong>
-                                        {order.shippingAddress.address},  {order.shippingAddress.city}
-                                        {'  '}
-                                        {order.shippingAddress.postalCode},
-                                {'  '}
-                                        {order.shippingAddress.country}
-                                    </p>
-
-                                    {/* {order.isDelivered ? (
-                                                <Message variant='success'>Emailed on {order.deliveredAt}</Message>
-                                                ) : (
-                                                <div>
-                                                    <Button onClick={sendConfirmationEmail}>Email Me</Button>
-                                                    {order.isSendingEmail && <Message variant='info'>Sending email...</Message>}
-                                                    {order.emailError && <Message variant='danger'>{order.emailError}</Message>}
-                                                </div>
-                                                )} */}
-
-                                </ListGroup.Item>
+                             
 
                                 <ListGroup.Item>
-                                    <h2>Payment Method</h2>
-                                    <p>
-                                        <strong>Method: </strong>
-                                        {order.paymentMethod}
-                                    </p>
-                                    {order.isPaid ? (
-                                        <Message variant='success'>Paid on {order.paidAt}</Message>
-                                        
-                                        
-                                    ) : (
-                                            <Message variant='warning'>Not Paid</Message>
-                                            
-                                        )}
-
-                                </ListGroup.Item>
-
-                                <ListGroup.Item>
-                                    <h2>Order Items</h2>
+                                    <h2 className='text-center'>Chosen Game</h2>
                                     {order.orderItems.length === 0 ? <Message variant='info'>
-                                        Order is empty
+                                        Please choose a game to purchase.
                             </Message> : (
                                             <ListGroup variant='flush'>
                                                 {order.orderItems.map((item, index) => (
-                                                    <ListGroup.Item key={index}>
-                                                        <Row>
-                                                            <Col md={1}>
-                                                                <Image src={item.image} alt={item.name} fluid rounded />
-                                                            </Col>
+                                                    <ListGroup.Item key={index} >
+                                                    <Row className="align-items-center">
+                                                      <Col md={1} className="mx-auto">
+                                                        <Image src={item.image} alt={item.name} fluid className="d-block"  />
+                                                      </Col>
+                                                    </Row>
+                                                  </ListGroup.Item>
 
-                                                            <Col>
-                                                                <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                                            </Col>
-
-                                                            {/* <Col md={4}>
-                                                                {item.qty} X ${item.price} = ${(item.qty * item.price).toFixed(2)}
-                                                            </Col> */}
-                                                        </Row>
-                                                    </ListGroup.Item>
+                                                  
                                                 ))}
                                             </ListGroup>
                                         )}
                                 </ListGroup.Item>
 
                             </ListGroup>
-
+                            </Card>
                         </Col>
 
-                        <Col md={4}>
-                            <Card>
+                        <Col md={12}>
+                            <Card className='text-center'>
                                 <ListGroup variant='flush'>
                                     <ListGroup.Item>
-                                        <h2>Order Summary</h2>
+                                        <h2>Purchase Summary</h2>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
-                                            <Col>Items:</Col>
+                                            <Col>Game Price:</Col>
                                             <Col>${order.itemsPrice}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
-                                    {/* <ListGroup.Item>
-                                        <Row>
-                                            <Col>Shipping:</Col>
-                                            <Col>${order.shippingPrice}</Col>
-                                        </Row>
-                                    </ListGroup.Item> */}
+                               
 
                                     <ListGroup.Item>
                                         <Row>
@@ -284,7 +181,7 @@ function OrderScreen({ match, history }) {
 
                
 {order.isPaid && order.paymentMethod === 'PayPal' && (
-  <Button onClick={download}>Download</Button>
+  <Button onClick={download}>Download Game</Button>
 )}
 
 

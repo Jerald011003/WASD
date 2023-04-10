@@ -31,10 +31,10 @@ function Header({ match, history}) {
   
   return (
     <header>
-       <Helmet>
+       {/* <Helmet>
         <title>W A S D</title>
         <link rel="icon" type="image/png" href="https://imgur.com/JxvCYdN.png" sizes="16x16" />
-      </Helmet>
+      </Helmet> */}
       <Navbar bg="dark" variant="dark" expand="lg" style={{ height: '125px' }}>
         <Container>
           <LinkContainer to="/">
@@ -132,11 +132,11 @@ function Header({ match, history}) {
                                     </LinkContainer>
 
                                     <LinkContainer to='/admin/productlist'>
-                                        <NavDropdown.Item>Products</NavDropdown.Item>
+                                        <NavDropdown.Item>Games</NavDropdown.Item>
                                     </LinkContainer>
 
                                     <LinkContainer to='/admin/orderlist'>
-                                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                                        <NavDropdown.Item>Purchase History</NavDropdown.Item>
                                     </LinkContainer>
 
                                 </NavDropdown>
