@@ -8,7 +8,7 @@ import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import { listProducts } from '../actions/productActions'
 import { Link } from 'react-router-dom';
-
+import WatchCarousel from '../components/WatchCarousel'
 import '../styles/Header.css'
 function HomeScreen({ history }) {
   const dispatch = useDispatch()
@@ -25,7 +25,6 @@ function HomeScreen({ history }) {
     <div className="home-screen-container">
       {/* <Friend /> */}
    
-
       {/* <h1 className="home-screen-title">Latest Games</h1> */}
       {loading ? (
         <Loader />
@@ -46,8 +45,10 @@ function HomeScreen({ history }) {
          
         </div>
       )}
+      {!keyword && <ProductCarousel />}
 
-{!keyword && <ProductCarousel />}
+
+{/* <WatchCarousel /> */}
     </div>
   )
 }
