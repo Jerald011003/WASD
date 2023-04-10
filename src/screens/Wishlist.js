@@ -35,7 +35,10 @@ const WishScreen = ({ match, location, history }) => {
                     {wishlistItems.map(item => (
                         <Col key={item.product} xs={12} md={6} lg={4} className="mb-4">
                             <div className="p-3 border rounded">
+                            <Link to={`/product/${item.product}`} className="fw-bold">
+
                                 <Image style={{ width: '300px', height: '300px', objectFit: 'cover' }} src={item.image} alt={item.name} fluid />
+                               </Link>
                                 <div className="mt-3">
                                     <Link to={`/product/${item.product}`} className="fw-bold">{item.name}</Link>
                                 </div>
